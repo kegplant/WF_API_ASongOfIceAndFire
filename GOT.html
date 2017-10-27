@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>A Song of Fire and Ice</title>
+        <link rel="stylesheet" type="text/css" href="GOT.css">
+        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"> </script>
+        <script type="text/javascript">
+        $(document).ready(function(){
+            //example of getting House data
+            // $.get("https://www.anapioficeandfire.com/api/houses/",{name:"House Baratheon of Storm's End"},function(res){
+            // console.log(res);
+            // },'json');
+            $('img').click(function(){
+                var houseName=$(this).attr('name');
+                console.log("name is "+houseName);
+                $.get("https://www.anapioficeandfire.com/api/houses/",{name:houseName},function(res){
+                    $('#name').text('Name: '+res[0].name);
+                    $('#words').text('Words: '+res[0].words);
+                    $('#titles').text('Titles: '+res[0].titles.join(', '));
+                    // console.log(res[0]);
+                    // console.log(res[0]["name"]);
+                });                
+            })
+        });
+        // $.ajax({
+        //     url: 'https://www.anapioficeandfire.com/api/houses/',
+        //     type: "get", //send it through get method
+        //     data: { 
+        //     // ajaxid: 4, 
+        //     // UserID: UserID, 
+        //     // EmailAddress: EmailAddress
+        //     //name:'lannister'
+        //     // name:"House Targaryen of King's Landing"
+        //     //name:"House Lannister of Casterly Rock"
+        //     //hasWords:"House Stark of"
+        //     // name:"House Stark of Winterfell"
+        //     name:"House Baratheon of Storm's End"
+        //     },
+        //     success: function(res) {
+        //         //Do Something
+        //         console.log(res);
+        //     },
+        //     error: function(xhr) {
+        //         //Do Something to handle error
+        //     }
+
+        // });
+
+        </script>
+    </head>
+    <body>
+        <div class='houses'>
+            <div>
+                <img src="images/stark.jpg" alt="House Stark" name="House Stark of Winterfell">
+            </div>
+            <div>
+                <img src="images/targaryen.jpg" alt="House Targaryen" name="House Targaryen of King's Landing">
+            </div>
+            <div>
+                <img src="images/lannister.jpg" alt="House Lannister" name="House Lannister of Casterly Rock">
+            </div>
+            <div>
+                <img src="images/baratheon.png" alt="House Baratheon" name="House Baratheon of Storm's End">
+            </div>
+        </div>
+        <div class='fact'>
+            <label>House Details</label>
+            <p id='name'></p>
+            <p id='words'></p>
+            <p id='titles'></p>
+        </div>
+    </body>
+</html>
